@@ -1,0 +1,43 @@
+interface Student {
+    name: string;
+    avgMark: number;
+}
+
+interface Statistics {
+    avgMark: number;
+    hightestMark: string;
+    lowestMark: string;
+}
+
+function getStatistics(marks: Student[]): Statistics {
+    var min = 10
+    var max = -10
+    var highMark = ''
+    var lowMark = ''
+    var avg = 0
+    var i = 0
+    for (i < marks.length; i++) {
+         if (marks[i]['avgMark'] > max) {
+            highMark = marks[i]['name']
+            max = marks[i]['avgMark']
+         } 
+         if (marks[i]['avgMark'] < min) {
+             lowMark = marks[i]['name']
+             min = marks[i]['avgMark']
+         }
+         avg += marks[i]['avgMark']
+    }
+    avg /= marks.length;
+    return {avgMark: avg,
+            hightestMark: highMark,
+            lowestMark: lowMark}}
+
+const testMarks = [{
+    name: 'Vasya',
+    avgMark: 3.75
+}, {
+    name: 'Lena',
+    avgMark: 4.89
+}]
+
+console.log(getStatistics(testMarks))
